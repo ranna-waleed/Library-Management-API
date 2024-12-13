@@ -20,5 +20,19 @@ This project is a RESTful API for managing a collection of books in a library. D
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/library-management-api.git
-   cd library-management-api
+   git clone https://github.com/ranna-waleed/Library-Management-API.git
+   cd Library-Management-API
+
+2. Create and Activate Virtual Environment
+
+      python -m venv venv
+      source venv/bin/activate  # On macOS/Linux
+      .\venv\Scripts\activate  # On Windows
+
+## Docker Integration
+Build the Docker Image: docker build -t library-management-api .
+
+Run the Docker Container: docker run -p 5000:5000 library-management-api
+
+## Running the Application
+ flask run
