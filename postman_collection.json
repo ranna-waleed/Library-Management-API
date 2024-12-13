@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "ee82f42b-26ea-4759-893d-07d5fc25a701",
+		"name": "Library Managment API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36838382"
+	},
+	"item": [
+		{
+			"name": "Add new book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"author\": \"Author Name\",\r\n  \"genre\": \"Fiction\",\r\n  \"isbn\": \"1234567890\",\r\n  \"published_year\": 2021,\r\n  \"title\": \"Sample Book\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/books",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lisk books request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/books/search?author=Author Name",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"books",
+						"search"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "Author Name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete book request",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/books/1234567890",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"books",
+						"1234567890"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update book request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Updated Title\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/books/1234567890",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"books",
+						"1234567890"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

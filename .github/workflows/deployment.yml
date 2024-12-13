@@ -16,14 +16,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Build Docker image
+        run: |
+          docker build -t library-api .
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure
         run: |
-        # Add your deployment script here
+          az webapp up --name <your-app-name> --resource-group <your-resource-group> --plan <your-app-service-plan>
