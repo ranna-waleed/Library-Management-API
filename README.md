@@ -1,38 +1,77 @@
 # Library Management API
 
-## Project Overview
-This project is a RESTful API for managing a collection of books in a library. Data is stored in a JSON file.
+## Description
+A RESTful API for managing a collection of books in a library.
 
+### Prerequisites
+- Python 3.9 
+- Docker
 
-## Features
+### Installation
 
-- Add a new book with details such as title, author, published year, ISBN, and genre.
-- List all books in the library.
-- Search for books by author, published year, or genre.
-- Delete book by its ISBN.
-- Update book details by its ISBN.
-
-## Prerequisites
-- Python 3.x
-- Docker (optional)
-- Git
-
-## Installation
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/ranna-waleed/Library-Management-API.git
-   cd Library-Management-API
+   git clone (https://github.com/ranna-waleed/Library-Management-API)
+   cd library-management-api
+   ```
 
-2. Create and Activate Virtual Environment
+2. **Create and activate a virtual environment:**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
 
-      python -m venv venv
-      source venv/bin/activate  # On macOS/Linux
-      .\venv\Scripts\activate  # On Windows
+3. **Install the dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Docker Integration
-Build the Docker Image: docker build -t library-management-api .
+### Running the API
 
-Run the Docker Container: docker run -p 5000:5000 library-management-api
+1. **Start the Flask application:**
+   ```bash
+   python src/app.py
+   ```
 
-## Running the Application
- flask run
+2. **Access the API:**
+   Open your browser and go to `http://127.0.0.1:5000`.
+
+### API Endpoints
+
+- `POST /books`: Add a new book
+- `GET /books`: List all books
+- `GET /books/search`: Search for books
+- `DELETE /books/:isbn`: Delete book by ISBN
+- `PUT /books/:isbn`: Update book details by ISBN
+
+### Running Tests
+
+1. **Using `unittest`:**
+   ```bash
+   python -m unittest discover -s tests
+   ```
+
+### Docker
+
+1. **Build the Docker image:**
+   ```bash
+   docker build -t library-management-api .
+   ```
+
+2. **Run the Docker container:**
+   ```bash
+   docker run -p 5000:5000 library-management-api
+   ```
+
+3. **Access the API:**
+   Open your browser and go to `http://127.0.0.1:5000`.
+
+### Postman Collection
+
+A Postman collection containing requests for all API functionalities is included in the repository under `static/postman_collection.json`file.
+
+### Swagger Documentation
+
+The Swagger documentation for the API is available in the `static/swagger.json` file.
+
+

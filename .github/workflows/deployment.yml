@@ -16,22 +16,30 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '3.8'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          python -m venv venv
+          source venv/bin/activate
           pip install -r requirements.txt
 
       - name: Build Docker image
         run: |
-          docker build -t library-api .
+          docker build -t library-management-api .
 
-      - name: Log in to Azure
+      - name: Login to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Deploy to Azure
+      - name: Push Docker image to Azure Container Registry
         run: |
-          az webapp up --name <your-app-name> --resource-group <your-resource-group> --plan <your-app-service-plan>
+          docker tag library-management-api:latest <your-azure-container-registry>/library-management-api:latest
+          docker push <your-azure-container-registry>/library-management-api:latest
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: <your-app-name>
+          images: '<your-azure-container-registry>/library-management-api:latest'
