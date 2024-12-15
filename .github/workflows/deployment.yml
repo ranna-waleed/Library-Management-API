@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.9'
 
       - name: Install dependencies
         run: |
@@ -28,18 +28,15 @@ jobs:
         run: |
           docker build -t library-management-api .
 
-      - name: Login to Azure
+      - name: Log in to Azure
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Push Docker image to Azure Container Registry
-        run: |
-          docker tag library-management-api:latest <your-azure-container-registry>/library-management-api:latest
-          docker push <your-azure-container-registry>/library-management-api:latest
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: <your-app-name>
-          images: '<your-azure-container-registry>/library-management-api:latest'
+          app-name: 'your-app-name'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
